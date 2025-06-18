@@ -1,17 +1,17 @@
 #!/usr/bin/python3
+"""
+This module contains a function that returns
+Pascal's Triangle up to a given number of rows.
+"""
 
 def pascal_triangle(n):
     if n <= 0:
         return []
-
-    triangle = [[1]]  # First row is always [1]
-
+    triangle = [[1]]
     for i in range(1, n):
-        prev_row = triangle[-1]
-        new_row = [1]  # Start with 1
-        for j in range(1, len(prev_row)):
-            new_row.append(prev_row[j - 1] + prev_row[j])  # Sum of two above
-        new_row.append(1)  # End with 1
-        triangle.append(new_row)
-
+        row = [1]
+        for j in range(1, i):
+            row.append(triangle[i-1][j-1] + triangle[i-1][j])
+        row.append(1)
+        triangle.append(row)
     return triangle
